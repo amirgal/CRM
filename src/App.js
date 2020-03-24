@@ -22,7 +22,7 @@ const App = inject('clientsStore')((props) => {
       <Router>
         <NavBar />
         <Route path='/clients' exact render={() => 
-          <div id="clients-page"><Clients/></div>
+          <Clients/>
         }/>
       </Router>
     );

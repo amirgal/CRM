@@ -4,7 +4,7 @@ import { observer } from 'mobx-react';
 const Client = observer((props) => {
     
     return (
-        <div className="client-row">
+        <div className="client-row" onDoubleClick={props.setShowEditor(true)}>
             <div className="client-row-item">{props.client.name}</div>
             <div className="client-row-item">{props.client.country}</div>
             <div className="client-row-item">{props.client.firstContact.substring(0,9)}</div>

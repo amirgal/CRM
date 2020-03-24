@@ -31,3 +31,11 @@
   margin: 10px 0;
   border-bottom: 1px solid black;
 }
+
+#client-editor{
+  position: absolute;
+  z-index: 2;
+  top: 20%;
+  left: 30%;
+  background-color: rgba(0, 0, 0, 0.472);
+}
