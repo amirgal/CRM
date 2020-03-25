@@ -23,6 +23,7 @@ export default class ClientsStore {
     }
 
     @action editClient = data => {
+        axios.put('http://localhost:4000/client', data)
         const client = this.clients.find(c => c.id === data.id)
         client.name = data.name
         client.country = data.country

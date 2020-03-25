@@ -15,8 +15,6 @@ const Clients = inject('clientsStore')(observer((props) => {
         setClients(props.clientsStore.clients.filter(c => c.name.toLowerCase().includes(input)))
     }
 
-    
-
     return (
         <div id="clients-page">
             <ClientsSearchBar handleSearch={handleSearch}/>

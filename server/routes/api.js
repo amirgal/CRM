@@ -61,4 +61,13 @@ router.post('/client', async (req,res) => {
     res.send({clientId})
 })
 
+router.put('/client', async (req,res) => {
+    const data = req.body
+    const countryId = await addInfo(data.country,'country')
+    query = `UPDATE client 
+    SET name = '${data.name}', country_id = ${countryId}
+    WHERE id = ${data.id};`
+    await sequelize.query(query)
+})
+
 module.exports = router
