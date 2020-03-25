@@ -27,4 +27,4 @@ export default class ClientsStore {
         client.name = data.name
         client.country = data.country
     }
-}
+} 
