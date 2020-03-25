@@ -1,6 +1,6 @@
 import { observable, action } from "mobx";
 
-export default class Client{
+export default class ClientInputs{
     
     @observable name
     @observable email
@@ -9,6 +9,10 @@ export default class Client{
 
     @action handleChange = e => {
         this[e.target.id] = e.target.value
+    }
+
+    @action addClient = () => {
+        console.log(this.name,this.email,this.country,this.owner)
     }
 
 }

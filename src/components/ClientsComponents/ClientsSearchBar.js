@@ -4,7 +4,7 @@ const clientsSearchBar = (props) => {
     
     return (
         <div id="search-bar">
-            <input placeholder='Search' onChange={props.handleSearch}></input>
+            <input placeholder='Search' defaultValue={''} onChange={props.handleSearch}></input>
         </div>
     )
 }
