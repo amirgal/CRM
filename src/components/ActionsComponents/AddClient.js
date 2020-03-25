@@ -1,37 +1,55 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { inject, observer } from 'mobx-react';
 import {List, ListItem, Button, TextField} from '@material-ui/core';
 
-const AddClient = inject('clientsStore', 'clientInputsStore')(observer((props) => {
+
+@inject('clientsStore')
+@observer
+class AddClient extends React.Component{
+    constructor(){
+        super()
+        this.state = {
+            name:'',
+            email:'',
+            country:'',
+            owner:'',
+        }
+    }
+
+    handleChange = e => {
+        this.setState({[e.target.id]: e.target.value})
+    }
     
-    return (
-        <div>
-            <form autoComplete="off" noValidate id="add-client" >
-            <List>
-                <ListItem>
-                    <TextField className="inputfield" id="name"
-                    onChange={props.clientInputsStore.handleChange} label="Name" type="text"/>
-                </ListItem>
-                <ListItem>
-                    <TextField className="inputfield" id="email"
-                    onChange={props.clientInputsStore.handleChange} label="Email" type="text"/>
-                </ListItem>
-                <ListItem>
-                    <TextField className="inputfield" id="country"
-                    onChange={props.clientInputsStore.handleChange} label="Country" type="text"/>
-                </ListItem>
-                <ListItem>
-                    <TextField className="inputfield" id="owner"
-                    onChange={props.clientInputsStore.handleChange} label="Owner" type="text"/>
-                </ListItem>
-                <ListItem id="btns-list-item">
-                    <Button color="primary" variant="contained"
-                    onClick={props.clientInputsStore.addClient}>Add New Client</Button>
-                </ListItem>
-            </List>
-        </form>
-        </div>
-    )
-}))
+    render(){
+        return (
+            <div>
+                <form autoComplete="off" noValidate id="add-client" >
+                <List>
+                    <ListItem>
+                        <TextField className="inputfield" id="name"
+                        onChange={this.handleChange} label="Name" type="text"/>
+                    </ListItem>
+                    <ListItem>
+                        <TextField className="inputfield" id="email"
+                        onChange={this.handleChange} label="Email" type="text"/>
+                    </ListItem>
+                    <ListItem>
+                        <TextField className="inputfield" id="country"
+                        onChange={this.handleChange} label="Country" type="text"/>
+                    </ListItem>
+                    <ListItem>
+                        <TextField className="inputfield" id="owner"
+                        onChange={this.handleChange} label="Owner" type="text"/>
+                    </ListItem>
+                    <ListItem id="btns-list-item">
+                        <Button color="primary" variant="contained"
+                        onClick={()=>this.props.clientsStore.addClient(this.state)}>Add New Client</Button>
+                    </ListItem>
+                </List>
+            </form>
+            </div>
+        )
+    }
+}
 
 export default AddClient

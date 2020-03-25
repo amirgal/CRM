@@ -14,8 +14,8 @@ export default class ClientsStore {
     }
 
     @action addClient = async c => {
-        const client = await axios.post('http://localhost:4000/client',c)
-        console.log(client)
+        // const client = await axios.post('http://localhost:4000/client',c)
+        console.log(c)
         // this.clients.push(new Client(client))
     }
 
