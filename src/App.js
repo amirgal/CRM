@@ -3,7 +3,7 @@ import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { useEffect } from 'react';
 import { inject } from 'mobx-react';
-import {Clients , NavBar} from './components';
+import {Clients , NavBar, Actions} from './components';
 
 const App = inject('clientsStore')((props) => {
 
@@ -16,6 +16,9 @@ const App = inject('clientsStore')((props) => {
         <NavBar />
         <Route path='/clients' exact render={() => 
           <Clients/>
+        }/>
+        <Route path='/actions' exact render={() => 
+          <Actions/>
         }/>
       </Router>
     );

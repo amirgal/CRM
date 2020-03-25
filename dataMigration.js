@@ -46,4 +46,4 @@ const migrateData = async data => {
     };
 }
 
-migrateData(data)
+migrateData(data.slice(0,9))

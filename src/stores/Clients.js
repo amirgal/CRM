@@ -13,8 +13,10 @@ export default class ClientsStore {
       });
     }
 
-    @action addClient = client => {
-        this.clients.push(new Client(client))
+    @action addClient = async c => {
+        const client = await axios.post('http://localhost:4000/client',c)
+        console.log(client)
+        // this.clients.push(new Client(client))
     }
 
     @action editClient = data => {

@@ -34,14 +34,14 @@ USE CRM;
 --     FOREIGN KEY (country_id) REFERENCES country(id)
 -- );
 
-SELECT client.id, client.name, client.email,
-client.first_contact,client.sold, et.type AS et,
-employee.name AS owner, country.name AS country
-FROM client JOIN country JOIN email_type AS et JOIN employee
-on client.email_type_id = et.id
-AND client.country_id = country.id 
-AND client.employee_id = employee.id
-ORDER BY client.id;
+-- SELECT client.id, client.name, client.email,
+-- client.first_contact,client.sold, et.type AS et,
+-- employee.name AS owner, country.name AS country
+-- FROM client JOIN country JOIN email_type AS et JOIN employee
+-- on client.email_type_id = et.id
+-- AND client.country_id = country.id 
+-- AND client.employee_id = employee.id
+-- ORDER BY client.id;
 
 -- SELECT p.name AS poke_names
 --                 FROM pokemon AS p JOIN pokemon_type AS pt
