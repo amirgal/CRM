@@ -19,8 +19,7 @@ export default class ClientsStore {
         c.emailType = '.'
         const response = await axios.post('http://localhost:4000/client',c)
         c.id = response.data.clientId
-        console.log(c)
-        this.clients.push(new Client(c))
+        c.id ? this.clients.push(new Client(c)) : alert('client exists')
     }
 
     @action editClient = data => {
