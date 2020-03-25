@@ -37,5 +37,7 @@
   z-index: 2;
   top: 20%;
   left: 30%;
-  background-color: rgba(0, 0, 0, 0.472);
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 0px 10px black;
+  border-radius: 5px;
 }

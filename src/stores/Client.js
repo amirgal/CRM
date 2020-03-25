@@ -1,4 +1,4 @@
-import { observable } from "mobx";
+import { observable, action } from "mobx";
 
 export default class Client{
     
@@ -8,6 +8,10 @@ export default class Client{
     @observable sold
     @observable owner
     @observable country
+
+    @action editClientInfo = e => {
+        this[e.target.id] = e.target.value
+    }
 
     constructor(client) {
         this.id = client.id
