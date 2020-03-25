@@ -15,7 +15,7 @@ export default class Client{
 
     constructor(client) {
         this.id = client.id
-        this.firstContact = client.first_contact
+        this.firstContact = client.first_contact || client.firstContact
 
         this.name = client.name
         this.email = client.email

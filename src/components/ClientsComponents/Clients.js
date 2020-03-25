@@ -11,8 +11,8 @@ const Clients = inject('clientsStore')(observer((props) => {
     const [editedClient, setEditedClient] = useState({})
     const [clients, setClients] = useState(props.clientsStore.clients)
     
-    const handleSearch = e => {
-        setClients(props.clientsStore.clients.filter(c => c.name.toLowerCase().includes(e.target.value)))
+    const handleSearch = input => {
+        setClients(props.clientsStore.clients.filter(c => c.name.toLowerCase().includes(input)))
     }
 
     

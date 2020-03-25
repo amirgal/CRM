@@ -14,9 +14,13 @@ export default class ClientsStore {
     }
 
     @action addClient = async c => {
-        // const client = await axios.post('http://localhost:4000/client',c)
+        c.sold = 0
+        c.firstContact = (new Date()).toDateString()
+        c.emailType = '.'
+        const response = await axios.post('http://localhost:4000/client',c)
+        c.id = response.data.clientId
         console.log(c)
-        // this.clients.push(new Client(client))
+        this.clients.push(new Client(c))
     }
 
     @action editClient = data => {
