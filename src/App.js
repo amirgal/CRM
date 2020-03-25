@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import NavBar from './components/navbar';
 import { useEffect } from 'react';
 import { inject } from 'mobx-react';
-import {Clients} from './components';
+import {Clients , NavBar} from './components';
+import CircularProgress from '@material-ui/core/CircularProgress';
 const axios = require('axios');
 
 const App = inject('clientsStore')((props) => {
