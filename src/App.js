@@ -3,7 +3,7 @@ import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { useEffect } from 'react';
 import { inject } from 'mobx-react';
-import {Clients , NavBar, Actions} from './components';
+import {Clients , NavBar, Actions, TabsBar} from './components';
 
 const App = inject('clientsStore')((props) => {
 
@@ -13,7 +13,8 @@ const App = inject('clientsStore')((props) => {
 
     return (
       <Router>
-        <NavBar />
+        {/* <NavBar /> */}
+        <TabsBar />
         <Route path='/clients' exact render={() => 
           <Clients/>
         }/>
