@@ -6,9 +6,9 @@ const addInfo = async (dataStr,type) => {
     let query1
     let query2
 
-    if(type === 'employee'){
-        query1 = `SELECT id FROM employee WHERE employee.name = '${dataStr}'`
-        query2 = `INSERT INTO employee VALUES (null, '${dataStr}')`
+    if(type === 'owner'){
+        query1 = `SELECT id FROM owner WHERE owner.name = '${dataStr}'`
+        query2 = `INSERT INTO owner VALUES (null, '${dataStr}')`
     } else if(type === 'country') {
         query1 = `SELECT id FROM country WHERE country.name = '${dataStr}'`
         query2 = `INSERT INTO country VALUES (null, '${dataStr}')`
@@ -39,7 +39,7 @@ const addClient = async (client, employeeId, countryId, emailTypeId) => {
 
 const migrateData = async data => {
     for(let client of data){
-        const employeeId = await addInfo(client.owner,'employee')  
+        const employeeId = await addInfo(client.owner,'owner')  
         const countryId = await addInfo(client.country,'country')
         const emailTypeId = await addInfo(client.emailType)
         await addClient(client, employeeId, countryId, emailTypeId)

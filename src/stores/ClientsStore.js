@@ -4,13 +4,14 @@ const axios = require('axios');
 
 export default class ClientsStore {
     @observable clients = []
+    @observable owners = []
+    @observable emailTypes = [{type:'A'},{type:'B'},{type:'C'},{type:'D'}]
 
-    @action loadClients = () => {
-        axios.get('http://localhost:4000/clients').then((result) => {
-        this.clients = result.data.map(c => new Client(c))
-      }).catch((err) => {
-        console.error(err)
-      });
+    @action loadClients = async () => {
+        const clientsData = await axios.get('http://localhost:4000/clients')
+        this.clients = clientsData.data.map(c => new Client(c))
+        const ownersData = await axios.get('http://localhost:4000/owners')
+        this.owners = ownersData.data
     }
 
     @action addClient = async c => {
@@ -25,7 +26,13 @@ export default class ClientsStore {
     @action editClient = data => {
         axios.put('http://localhost:4000/client', data)
         const client = this.clients.find(c => c.id === data.id)
-        client.name = data.name
-        client.country = data.country
+        Object.keys(data).forEach(k => client[k] = data[k])
+    }
+
+    @action declareSale = clientsIds => {
+      clientsIds.forEach(id => {
+        this.clients.find(c => c.id === id).sold = 1
+      });
+      axios.put(`http://localhost:4000/sold`, clientsIds)
     }
 } 

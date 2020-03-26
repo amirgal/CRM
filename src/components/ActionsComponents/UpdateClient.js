@@ -12,16 +12,28 @@ class UpdateClient extends React.Component{
     constructor(){
         super()
         this.state = {
-            chosenClientsIds: []
+            chosenClientsIds: [],
+            owner:''
         }
     }
 
-    handleChange = e => {
-        this.setState({[e.target.id]: e.target.value})
-    }
     setChosenClients = (e,v) => {
         const chosenClientsIds = v.map(c => c.id)
         this.setState({chosenClientsIds})
+    }
+
+    setOwnerId = (e,v) => {
+        this.setState({owner: v.name})
+    }
+    
+    declareSale = () => {
+        this.props.clientsStore.declareSale(this.state.chosenClientsIds)
+    }
+
+    updateClient = () => {
+        this.state.chosenClientsIds.forEach(cId => {
+            this.props.clientsStore.editClient({id:cId, owner: this.state.owner})
+        })
     }
 
     render(){
@@ -58,30 +70,34 @@ class UpdateClient extends React.Component{
                         <div className="update-client-row" id="update-owner">
                             <Autocomplete
                                 id="select-owner"
-                                options={[{name:'elliot'},{name:'perkins'}]}
+                                onChange={this.setOwnerId}
+                                options={this.props.clientsStore.owners}
                                 getOptionLabel={option => option.name}
                                 style={{ width: 300 }}
                                 renderInput={params => <TextField {...params}
                                     label="Select Owner"/>}
                             />
-                            <Button color='primary' variant='outlined'>Transfer Ownership</Button>
+                            <Button color='primary' variant='outlined'
+                            onClick={this.updateClient}>Transfer Ownership</Button>
                         </div>
                     </ListItem>
                     <ListItem>
                         <div className="update-client-row">
                             <Autocomplete
                                 id="select-email-type"
-                                options={[{type:'A'},{type:'B'},{type:'C'},{type:'D'}]}
+                                options={this.props.clientsStore.emailTypes}
                                 getOptionLabel={option => option.type}
                                 style={{ width: 300 }}
                                 renderInput={params => <TextField {...params}
                                     label="Select Email To Send"/>}
                             />
-                            <Button color='primary' variant='outlined'>Send Email</Button>
+                            <Button color='primary' variant='outlined'
+                            onClick={this.updateClient}>Send Email</Button>
                         </div>
                     </ListItem>
                     <ListItem>
-                        <Button color='primary' variant='contained'>Declare Sale!</Button>
+                        <Button color='primary' variant='contained' 
+                        onClick={this.declareSale}>Declare Sale!</Button>
                     </ListItem>
                 </List>
             </form>
