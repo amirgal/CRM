@@ -74,7 +74,11 @@ router.put('/client', async (req,res) => {
         const ownerId = await addInfo(data.owner,'owner')
         query = `UPDATE client SET owner_id = ${ownerId}
         WHERE id = ${data.id}`
-    }else {
+    } else if(data.emailType){
+        const emailTypeId = await addInfo(data.emailType,'emailType')
+        query = `UPDATE client SET email_type_id = ${emailTypeId}
+        WHERE id = ${data.id}`
+    } else {
         const countryId = await addInfo(data.country,'country')
         query = `UPDATE client 
         SET name = '${data.name}', country_id = ${countryId}

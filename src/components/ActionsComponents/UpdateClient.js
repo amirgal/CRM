@@ -13,7 +13,8 @@ class UpdateClient extends React.Component{
         super()
         this.state = {
             chosenClientsIds: [],
-            owner:''
+            owner:'',
+            emailType:''
         }
     }
 
@@ -22,17 +23,21 @@ class UpdateClient extends React.Component{
         this.setState({chosenClientsIds})
     }
 
-    setOwnerId = (e,v) => {
+    setOwner = (e,v) => {
         this.setState({owner: v.name})
+    }
+
+    setEmailType = (e,v) => {
+        this.setState({emailType: v.type})
     }
     
     declareSale = () => {
         this.props.clientsStore.declareSale(this.state.chosenClientsIds)
     }
 
-    updateClient = () => {
+    updateClient = (key) => {
         this.state.chosenClientsIds.forEach(cId => {
-            this.props.clientsStore.editClient({id:cId, owner: this.state.owner})
+            this.props.clientsStore.editClient({id:cId, [key]: this.state[key]})
         })
     }
 
@@ -70,7 +75,7 @@ class UpdateClient extends React.Component{
                         <div className="update-client-row" id="update-owner">
                             <Autocomplete
                                 id="select-owner"
-                                onChange={this.setOwnerId}
+                                onChange={this.setOwner}
                                 options={this.props.clientsStore.owners}
                                 getOptionLabel={option => option.name}
                                 style={{ width: 300 }}
@@ -78,13 +83,14 @@ class UpdateClient extends React.Component{
                                     label="Select Owner"/>}
                             />
                             <Button color='primary' variant='outlined'
-                            onClick={this.updateClient}>Transfer Ownership</Button>
+                            onClick={() => this.updateClient('owner')}>Transfer Ownership</Button>
                         </div>
                     </ListItem>
                     <ListItem>
                         <div className="update-client-row">
                             <Autocomplete
                                 id="select-email-type"
+                                onChange={this.setEmailType}
                                 options={this.props.clientsStore.emailTypes}
                                 getOptionLabel={option => option.type}
                                 style={{ width: 300 }}
@@ -92,7 +98,7 @@ class UpdateClient extends React.Component{
                                     label="Select Email To Send"/>}
                             />
                             <Button color='primary' variant='outlined'
-                            onClick={this.updateClient}>Send Email</Button>
+                            onClick={() => this.updateClient('emailType')}>Send Email</Button>
                         </div>
                     </ListItem>
                     <ListItem>

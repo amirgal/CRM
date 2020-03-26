@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { inject, observer } from 'mobx-react';
 import Client from './Client';
 import ClientsHeader from './ClientsHeader';
@@ -11,6 +11,10 @@ const Clients = inject('clientsStore')(observer((props) => {
     const [editedClient, setEditedClient] = useState({})
     const [clients, setClients] = useState(props.clientsStore.clients)
     
+    useEffect(()=>{
+        setClients(props.clientsStore.clients)
+    },[props.clientsStore.clients])
+
     const handleSearch = input => {
         setClients(props.clientsStore.clients.filter(c => c.name.toLowerCase().includes(input)))
     }
