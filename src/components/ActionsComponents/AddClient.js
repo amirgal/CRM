@@ -23,7 +23,7 @@ class AddClient extends React.Component{
     render(){
         return (
             <div id="add-client-container">
-                <h4>Add Client</h4>
+                <h4>ADD CLIENT</h4>
                 <form autoComplete="off" noValidate id="add-client" >
                 <List>
                     <ListItem>
